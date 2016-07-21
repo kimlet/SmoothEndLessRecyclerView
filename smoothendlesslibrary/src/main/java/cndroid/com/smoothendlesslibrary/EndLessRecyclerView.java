@@ -55,9 +55,9 @@ public class EndLessRecyclerView extends RecyclerView implements EndlessAdapter.
 
     private void initialAttributes(Context context, @Nullable AttributeSet attrs) {
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SmoothEndLessRecycler, 0, 0);
-        layoutLoadingId = typedArray.getResourceId(R.styleable.SmoothEndLessRecycler_loadingLayout, R.layout.endless_foot_layout);
-        buttonRetryText = typedArray.getString(R.styleable.SmoothEndLessRecycler_buttonRetryText);
-        loadingText = typedArray.getString(R.styleable.SmoothEndLessRecycler_loadingText);
+        layoutLoadingId = typedArray.getResourceId(R.styleable.SmoothEndLessRecycler_sel_footerLayout, R.layout.endless_foot_layout);
+        buttonRetryText = typedArray.getString(R.styleable.SmoothEndLessRecycler_sel_buttonRetryText);
+        loadingText = typedArray.getString(R.styleable.SmoothEndLessRecycler_sel_loadingText);
         if (TextUtils.isEmpty(buttonRetryText))
             buttonRetryText = context.getString(R.string.endless_string_retry_text);
         if (TextUtils.isEmpty(loadingText))

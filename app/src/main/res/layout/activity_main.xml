@@ -9,6 +9,8 @@
 
     <cndroid.com.smoothendlesslibrary.EndLessRecyclerView
         android:id="@+id/recycler"
+        app:sel_buttonRetryText="retry"
+        app:sel_loadingText="loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
