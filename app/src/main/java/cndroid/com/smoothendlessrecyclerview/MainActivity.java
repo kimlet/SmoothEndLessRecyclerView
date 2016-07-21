@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                recyclerView.completeLoadMore();
-                                adapter.increase();
+                                recyclerView.showRetryView();
+//                                adapter.increase();
                             }
                         });
                     }
@@ -89,14 +89,17 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(MyHolder2 holder, int position) {
-
+            holder.textView.setText("Hello world p" + position);
         }
 
 
         class MyHolder2 extends RecyclerView.ViewHolder {
 
+            TextView textView;
+
             public MyHolder2(View itemView) {
                 super(itemView);
+                textView = (TextView) itemView.findViewById(R.id.text);
             }
         }
 

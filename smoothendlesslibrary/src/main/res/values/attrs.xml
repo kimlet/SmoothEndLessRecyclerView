@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SmoothEndLessRecycler">
+        <attr name="loadingLayout" format="reference" />
+        <attr name="retryLayout" format="reference" />
+        <attr name="buttonRetryText" format="string" />
+        <attr name="loadingText" format="string" />
+    </declare-styleable>
+</resources>

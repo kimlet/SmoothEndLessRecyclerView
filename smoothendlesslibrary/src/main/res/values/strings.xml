@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SmoothEndLessLibrary</string>
+    <string name="endless_string_retry_text">Load Failed; Try it again</string>
+    <string name="endless_string_loading_text">Loading</string>
 </resources>

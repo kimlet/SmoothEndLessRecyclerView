@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="endless_view_type_loading" type="id" />
+    <item name="endless_retry_button_id" type="id" />
+    <item name="endless_loading_text_id" type="id" />
+    <item name="endless_view_switcher_id" type="id" />
+
+</resources>
