@@ -26,12 +26,14 @@ public class EndLessRecyclerView extends RecyclerView implements EndlessAdapter.
 
     private int visibleThreshold = 5; // The minimum amount of items to have below your current scroll position before loading more.
 
+    /**
+     * resource id for customer loading view
+     * customer layout must contain viewSwitcher and the id must be R.id.endless_view_switcher_id
+     * viewSwitcher must contain LOADING and RETRY layout
+     */
     private int layoutLoadingId;
 
-
-    private String buttonRetryText;
-
-    private String loadingText;
+    private String buttonRetryText, loadingText;
 
     public EndLessRecyclerView(Context context) {
         this(context, null);
@@ -43,6 +45,15 @@ public class EndLessRecyclerView extends RecyclerView implements EndlessAdapter.
 
     public EndLessRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        initialAttributes(context, attrs);
+        // add scrollListener for this recyclerView
+        mOnScrollListener = new EndlessRecyclerOnScrollListener();
+        addOnScrollListener(mOnScrollListener);
+
+        setHasFixedSize(true);
+    }
+
+    private void initialAttributes(Context context, @Nullable AttributeSet attrs) {
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SmoothEndLessRecycler, 0, 0);
         layoutLoadingId = typedArray.getResourceId(R.styleable.SmoothEndLessRecycler_loadingLayout, R.layout.endless_foot_layout);
         buttonRetryText = typedArray.getString(R.styleable.SmoothEndLessRecycler_buttonRetryText);
@@ -52,12 +63,6 @@ public class EndLessRecyclerView extends RecyclerView implements EndlessAdapter.
         if (TextUtils.isEmpty(loadingText))
             loadingText = context.getString(R.string.endless_string_loading_text);
         typedArray.recycle();
-
-
-        mOnScrollListener = new EndlessRecyclerOnScrollListener();
-        addOnScrollListener(mOnScrollListener);
-
-        setHasFixedSize(true);
     }
 
     @Override
@@ -123,6 +128,12 @@ public class EndLessRecyclerView extends RecyclerView implements EndlessAdapter.
         }
     }
 
+    /**
+     * must set listener by this method
+     * if not set listener , footer will not show you
+     *
+     * @param endLessListener
+     */
     public void setEndLessListener(EndLessListener endLessListener) {
         this.endLessListener = endLessListener;
         this.mOnScrollListener.setLoading(false);
@@ -137,6 +148,9 @@ public class EndLessRecyclerView extends RecyclerView implements EndlessAdapter.
         this.currentPageIndex = currentPageIndex;
     }
 
+    /**
+     * when loadMore failed and we want to retry then use this
+     */
     public void showRetryView() {
         if (null != endLessListener) {
             mAdapter.setShowRetry(true);
@@ -145,13 +159,18 @@ public class EndLessRecyclerView extends RecyclerView implements EndlessAdapter.
     }
 
     public void setButtonRetryText(String buttonRetryText) {
-        this.buttonRetryText = buttonRetryText;
+        assert mAdapter != null;
+        mAdapter.setLoadingText(buttonRetryText);
     }
 
     public void setLoadingText(String loadingText) {
-        this.loadingText = loadingText;
+        assert mAdapter != null;
+        mAdapter.setLoadingText(loadingText);
     }
 
+    /**
+     * callback and show footer
+     */
     public void onLoadMore() {
         if (null != endLessListener) {
             endLessListener.onLoadMoreData(currentPageIndex);
@@ -161,14 +180,24 @@ public class EndLessRecyclerView extends RecyclerView implements EndlessAdapter.
         }
     }
 
+    /**
+     * pageIndex +1
+     */
     private void increasePageIndex() {
         currentPageIndex++;
     }
 
+    /**
+     * @param visibleThreshold when user scroll recycler, the last visible item position appear then load more data
+     */
     public void setVisibleThreshold(int visibleThreshold) {
         this.visibleThreshold = visibleThreshold;
     }
 
+    /**
+     * when load more date success
+     * call this to hide loading footer
+     */
     public void completeLoadMore() {
         mOnScrollListener.setLoading(false);
         mAdapter.setFooterStatus(EndlessAdapter.FooterStatus.GONE);
