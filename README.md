@@ -1,6 +1,9 @@
 # SmoothEndLessRecyclerView
 endLess recyclerView
 
+###Demo
+![Sample Image](https://github.com/Jinbangzhu/SmoothEndLessRecyclerView/raw/master/demo.gif "Demo")
+
 ###Usage
 ####XML normal
     <cndroid.com.smoothendlesslibrary.EndLessRecyclerView
