@@ -113,8 +113,6 @@ public class EndLessRecyclerView extends RecyclerView implements EndlessAdapter.
 
 
             if (!mLoading && (mTotalItemCount - mVisibleItemCount) <= (mFirstVisibleItem + visibleThreshold)) {
-                Log.d(this.getClass().getSimpleName(), "needLoadMore");
-
                 // user not register listener; ignore
                 if (null == endLessListener) return;
 
@@ -199,7 +197,15 @@ public class EndLessRecyclerView extends RecyclerView implements EndlessAdapter.
      * call this to hide loading footer
      */
     public void completeLoadMore() {
-        mOnScrollListener.setLoading(false);
-        mAdapter.setFooterStatus(EndlessAdapter.FooterStatus.GONE);
+        if (null != mOnScrollListener)
+            mOnScrollListener.setLoading(false);
+        if (null != mAdapter)
+            mAdapter.setFooterStatus(EndlessAdapter.FooterStatus.GONE);
     }
+
+
+    public int getCurrentPageIndex() {
+        return currentPageIndex;
+    }
+
 }
