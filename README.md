@@ -1,18 +1,18 @@
 # SmoothEndLessRecyclerView
 endLess recyclerView
 
-###Demo
+# Demo
 ![Sample Image](https://github.com/kimlet/SmoothEndLessRecyclerView/blob/master/demo.gif "Demo")
 
 
-###Usage
-####XML normal
+# Usage
+# XML normal
     <cndroid.com.smoothendlesslibrary.EndLessRecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-####XML advance
+# XML advance
     <cndroid.com.smoothendlesslibrary.EndLessRecyclerView
         android:id="@+id/recycler"
         app:sel_footerLayout="@layout/footer"
@@ -21,16 +21,16 @@ endLess recyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
         
-####Callback
+# Callback
     endLessRecyclerView.setEndLessListener(new EndLessListener() {
                 @Override
                 public void onLoadMoreData(int pageIndex) {
                     // do something
                 }
             });
-####Compelete loadMore
+# Compelete loadMore
     endLessRecyclerView.completeLoadMore();
-####Show retryView
+# Show retryView
     endLessRecyclerView.showRetryView();
     
     
