@@ -4,6 +4,7 @@ endLess recyclerView
 ###Demo
 ![Sample Image](https://github.com/kimlet/SmoothEndLessRecyclerView/blob/master/demo.gif "Demo")
 
+
 ###Usage
 ####XML normal
     <cndroid.com.smoothendlesslibrary.EndLessRecyclerView
